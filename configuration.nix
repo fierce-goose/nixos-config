@@ -32,40 +32,58 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_CA.UTF-8";
+  
+  hardware.tuxedo-rs = {
+    enable = true;
+    tailor-gui.enable = true;
+  };
 
   # Configure X11
   services.xserver = {
+    enable = true;
+    
     xkb.layout = "us";
     xkb.variant = "";
     
-    enable = true;
-    windowManager.bspwm.enable = true;  
+    windowManager.bspwm.enable = true;
+    displayManager = {
+      session = [{
+        manage = "desktop";
+        name = "xsession";
+        start = "exec ~/.xsession";
+      }];
+    }; 
   };
 
+  services.displayManager = {
+    defaultSession = "none+bspwm";
+  };
+  
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.goose = {
     isNormalUser = true;
     description = "goose";
     extraGroups = [ "networkmanager" "wheel" "input" ];
   };
-
+  
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
+  
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     neofetch
     home-manager
     git
-
-    xorg.xev
     alacritty
-    sxhkd
-    dunst
+    firefox
+    
+    xorg.xev
     polybar
-    picom
+    dunst
+    dmenu
     brightnessctl
+    alsa-utils
   ];
 
   # Auto-delete generations
