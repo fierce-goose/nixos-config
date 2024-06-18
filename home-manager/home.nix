@@ -8,9 +8,9 @@
   imports = [
     ./bspwm.nix
   ];
-
-  #programs.firefox.enable = true;
   
+  nixpkgs.config.allowUnfree = true;  
+
   programs.bash = {
     enable = true;
     shellAliases = {

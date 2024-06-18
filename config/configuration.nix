@@ -6,8 +6,10 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
       ./hardware-configuration.nix
+      ./nvidia.nix
+      ./autorandr.nix
     ];
 
   # Generation label
@@ -38,6 +40,17 @@
     tailor-gui.enable = true;
   };
 
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa = {
+      enable = true;
+      support32Bit = true;
+    };
+    pulse.enable = true;
+  };
+
+
   # Configure X11
   services.xserver = {
     enable = true;
@@ -58,17 +71,18 @@
   services.displayManager = {
     defaultSession = "none+bspwm";
   };
+
   
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.goose = {
     isNormalUser = true;
     description = "goose";
-    extraGroups = [ "networkmanager" "wheel" "input" ];
+    extraGroups = [ "networkmanager" "wheel" "input" "audio" ];
   };
   
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -76,7 +90,11 @@
     home-manager
     git
     alacritty
+    lxappearance
     firefox
+    telegram-desktop
+    
+    lshw
     
     xorg.xev
     polybar
