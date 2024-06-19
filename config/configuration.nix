@@ -97,8 +97,6 @@
     lshw
     
     xorg.xev
-    polybar
-    dunst
     dmenu
     brightnessctl
     alsa-utils
