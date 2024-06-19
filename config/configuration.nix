@@ -9,7 +9,6 @@
     [
       ./hardware-configuration.nix
       ./nvidia.nix
-      ./autorandr.nix
     ];
 
   # Generation label
@@ -58,14 +57,7 @@
     xkb.layout = "us";
     xkb.variant = "";
     
-    windowManager.bspwm.enable = true;
-    displayManager = {
-      session = [{
-        manage = "desktop";
-        name = "xsession";
-        start = "exec ~/.xsession";
-      }];
-    }; 
+    windowManager.bspwm.enable = true; 
   };
 
   services.displayManager = {

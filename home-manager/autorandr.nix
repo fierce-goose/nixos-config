@@ -1,6 +1,8 @@
-{ config, ... }: {
-  services.autorandr = {
+{ pkgs, ... }: {
+  services.autorandr.enable = true;
+  programs.autorandr = {
     enable = true;
+    hooks.postswitch = { "bspwm-reload" = "bspc wm -r"; };
     profiles = {
       "laptop" = {
         fingerprint = {

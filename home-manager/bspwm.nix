@@ -22,12 +22,7 @@
   
   xsession.windowManager.bspwm = {
     enable = true;
-    startupPrograms = [
-      "autorandr -c"
-      
-      "sxhkd"
-      "dunst"
-    ];
+    startupPrograms = [];
     monitors = {
       eDP-1 = ["1" "2" "3" "4" "5" "6" "7"];
       HDMI-1-0 = ["8" "9" "10"];

@@ -7,10 +7,11 @@
 
   imports = [
     ./bspwm.nix
+    ./autorandr.nix
   ];
   
   nixpkgs.config.allowUnfree = true;  
-
+  
   programs.bash = {
     enable = true;
     shellAliases = {
