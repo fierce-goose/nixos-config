@@ -39,16 +39,19 @@
     tailor-gui.enable = true;
   };
 
-  security.rtkit.enable = true;
-  services.pipewire = {
+  hardware.pulseaudio = {
     enable = true;
-    alsa = {
-      enable = true;
-      support32Bit = true;
-    };
-    pulse.enable = true;
+    support32Bit = true;
+    extraConfig = "load-module module-combine-sink";
+    package = pkgs.pulseaudioFull;
   };
+  nixpkgs.config.pulseaudio = true;
 
+  fonts = {
+    packages = with pkgs; [
+      (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+    ];
+  };
 
   # Configure X11
   services.xserver = {
@@ -87,11 +90,12 @@
     telegram-desktop
     
     lshw
+    killall
+    font-manager
     
     xorg.xev
-    dmenu
     brightnessctl
-    alsa-utils
+    rofi-power-menu
   ];
 
   # Auto-delete generations
