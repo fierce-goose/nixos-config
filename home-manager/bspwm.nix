@@ -6,7 +6,6 @@
     
     extraConfig = ''
     feh --no-fehbg --bg-fill ~/wallpapers/japanese_gate.jpg &
-    sleep 2
     killall -q polybar
     polybar -q bar1 &
     polybar -q bar2 &
@@ -19,8 +18,8 @@
 
     settings = {
       normal_border_color = "#79A7BF";
-      active_border_color = "#B16F82";
-      focused_border_color = "#B16F82";
+      active_border_color = "#F0A4B9"; #B16F82
+      focused_border_color = "#F0A4B9";
       border_width = 2;
       window_gap = 5;
       focus_follows_pointer = true;

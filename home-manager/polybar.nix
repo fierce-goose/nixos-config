@@ -158,7 +158,7 @@
         label-empty-padding = 1;
 
         label-urgent = "%icon%";
-        label-urgent-foreground = "#B16F82";
+        label-urgent-foreground = "#F0A4B9";
         label-urgent-padding = 1;
       };
       "module/bat" = {
