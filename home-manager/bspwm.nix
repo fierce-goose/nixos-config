@@ -18,9 +18,9 @@
     };
 
     settings = {
-      normal_border_color = "#66918c";
-      active_border_color = "#9c7e93";
-      focused_border_color = "#9c7e93";
+      normal_border_color = "#79A7BF";
+      active_border_color = "#B16F82";
+      focused_border_color = "#B16F82";
       border_width = 2;
       window_gap = 5;
       focus_follows_pointer = true;
@@ -34,6 +34,14 @@
       "tailor_gui" = {
         state = "floating";
         rectangle = "600x400+660+300";
+      };
+      "obs" = {
+        state = "floating";
+        rectangle = "1000x600+460+150";
+      };
+      "Pavucontrol" = {
+        state = "floating";
+        rectangle = "1000x600+460+150";
       };
     };
   };

@@ -6,25 +6,20 @@
       "bar/bar1" = {
         monitor = "eDP-1";
         bottom = false;
-        tray.position = "right";
+        #tray.position = "right";
 
         width = "1910";
         height = "22";
 
-        radius = 0;
+        radius = 5;
 
         offset.x = "5";
         offset.y = "5";
 
-        border.left.size = 2;
-        border.right.size = 2;
-        border.left.color = "#597572";
-        border.right.color = "#597572";
-
-        background = "#291d23";
+        background = "#492B37";
         foreground = "#fff";
 
-        padding.right = 2;
+        padding.right = 1;
         padding.left = 1;
 
         font-0 = "System-ui Regular:size=11;3:antialias=false";
@@ -32,37 +27,32 @@
         font-2 = "Symbols Nerd Font:size=16;3:antialias=false";
         font-3 = "System-ui Regular:size=10;2:antialias=false";
         font-4 = "System-ui Regular:size=6;1:antialias=false";
+        font-5 = "Symbols Nerd Font:size=13;3:antialias=false";
 
         wm.restack = "bspwm";
 
         fixed.center = true;
         
-        modules.left = "logo sp sep bspwm    msp msp msp msp    temp sp sp sep sp sp mem sp sp sep sp sp cpu";
-        modules.center = "date sp sep sp sp time";
-        modules.right = "bat sp sp sep sp sp vol sp sp sep sp sp wifi   msp   kbd    msp msp msp msp";
+        modules.left = "logo sp sep bspwm    msp msp msp msp sp sp sp sp    temp sp sp sep sp sp mem sp sp sep sp sp cpu";
+        modules.center = "date sp sp sp time sp sp sp sp sp";
+        modules.right = "bat sp sp sep sp sp vol sp sp sep sp sp wifi sp sp sep sp sp kbd    msp msp msp msp msp msp    tray";
       };
       "bar/bar2" = {
         monitor = "HDMI-1-0";
         bottom = false;
-        tray.position = "none";
-
+        
         width = "1270";
         height = "22";
 
-        radius = 0;
+        radius = 5;
 
         offset.x = "5";
         offset.y = "5";
 
-        border.left.size = 2;
-        border.right.size = 2;
-        border.left.color = "#597572";
-        border.right.color = "#597572";
-
-        background = "#291d23";
+        background = "#492B37";
         foreground = "#fff";
 
-        padding.right = 2;
+        padding.right = 1;
         padding.left = 1;
 
         font-0 = "System-ui Regular:size=11;3:antialias=false";
@@ -70,15 +60,21 @@
         font-2 = "Symbols Nerd Font:size=16;3:antialias=false";
         font-3 = "System-ui Regular:size=10;2:antialias=false";
         font-4 = "System-ui Regular:size=6;1:antialias=false";
+        font-5 = "Symbols Nerd Font:size=13;3:antialias=false";
 
         wm.restack = "bspwm";
 
         fixed.center = true;
 
-        modules.left = "bspwm";
-        modules.center = "date sp sp time";
-        modules.right = "bat";
+        modules.left = "logo sp sep bspwm    msp msp sp sp sp sp    temp sp sp sep sp sp mem sp sp sep sp sp cpu";
+        modules.center = "date sp sp sp time sp sp sp sp sp";
+        modules.right = "bat sp sp sep sp sp vol sp sp sep sp sp wifi sp sp sep sp sp kbd    msp msp msp";
       };
+
+
+
+
+
       "module/date" = {
         type = "internal/date";
         interval = "86400";
@@ -119,7 +115,7 @@
         type = "internal/memory";
         interval = 2;
         format = "<label>";
-        label = "%{F#afa} %{F-}%gb_used%";
+        label = "%{F#ffa} %{F-}%gb_used%";
       };
       "module/cpu" = {
         type = "internal/cpu";
@@ -154,7 +150,7 @@
         label-focused-padding = 1;
 
         label-occupied = "%icon%";
-        label-occupied-foreground = "#60818c";
+        label-occupied-foreground = "#79A7BF";
         label-occupied-padding = 1;
 
         label-empty = "%icon%";
@@ -162,7 +158,7 @@
         label-empty-padding = 1;
 
         label-urgent = "%icon%";
-        label-urgent-foreground = "#9c7e93";
+        label-urgent-foreground = "#B16F82";
         label-urgent-padding = 1;
       };
       "module/bat" = {
@@ -171,9 +167,9 @@
         low-at = 10;
 
         format.charging = "%{F#afa}<ramp-capacity> %{F-}<label-charging>";
-        format.discharging = "<ramp-capacity> <label-discharging>";
-        format.full = "<ramp-capacity> 100%";
-        format.low = "<animation-low> <label-low>";
+        format.discharging = "%{F#afa}<ramp-capacity> %{F-}<label-discharging>";
+        format.full = "%{F#afa}<ramp-capacity> %{F-}100%";
+        format.low = "%{F#f88}<animation-low> <label-low>";
 
         label.charging = "%percentage%%";
         label.discharging = "%percentage%%";
@@ -182,7 +178,6 @@
         ramp-capacity = [ "" "" "" "" ];
         animation-low = [ "" "" ];
         animation-low-framerate = 1500;
-        animation-low-foreground = "#f88";
       };
       "module/vol" = {
         type = "internal/alsa";
@@ -192,7 +187,7 @@
         label-volume = "%percentage%%";
         ramp-volume = [ "󰕿" "󰖀" "󰕾" ];
 
-        ramp-headphones = [ "" "" ];
+        click-right = "pavucontrol";
       };
       "module/wifi" = {
         type = "internal/network";
@@ -207,21 +202,26 @@
         ramp-signal = [ "󰤯" "󰤟" "󰤢" "󰤥" "󰤨" ];
         label-disconnected = "󰤮";
       };
-#      "module/kbd" = {
-#        type = "internal/keyboard";
-#        blacklist = [ "scroll lock" ];
-#        format = "<label-layout> <label-indicator>";
+      "module/kbd" = {
+        type = "internal/xkeyboard";
+        blacklist = [ "scroll lock" ];
+        format = "<label-layout> <label-indicator>";
 
-#        layout-icon = [ "en" ];
+        layout-icon = [ "en" ];
 
-#        label-indicator-on = "%name%";
+        label-indicator-on = "%name%";
 
-#        label-indicator-on-capslock = "󰪛";
-#        label-indicator-off-capslock = "";
+        label-indicator-on-capslock = "%{T6}󰯫 ";
+        label-indicator-off-capslock = "";
 
-#        label-indicator-on-numlock = "󰎦";
-#        label-indicator-off-numlock = "";
-#      };
+        label-indicator-on-numlock = "%{T6}󰎦";
+        label-indicator-off-numlock = "";
+      };
+      "module/tray" = {
+        type = "internal/tray";
+        tray-spacing = 3;
+        tray-size = "70%";
+      };
       "module/sp" = {
         type = "custom/text";
         format = "%{T5} ";

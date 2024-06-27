@@ -18,7 +18,8 @@
     shellAliases = {
       "rebuild" = "sudo nixos-rebuild switch";
       "hms" = "home-manager switch";
-      "conf" = "sudo nano /etc/nixos/configuration.nix";
+      "configuration.nix" = "sudo nano /etc/nixos/configuration.nix";
+      "nvidia.nix" = "sudo nano /etc/nixos/nvidia.nix";
       "home.nix" = "nano ~/.config/home-manager/home.nix";
       "bspwm.nix" = "nano ~/.config/home-manager/bspwm.nix";
       "sxhkd.nix" = "nano ~/.config/home-manager/sxhkd.nix";

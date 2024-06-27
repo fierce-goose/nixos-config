@@ -56,9 +56,10 @@
   # Configure X11
   services.xserver = {
     enable = true;
+    exportConfiguration = true;
     
-    xkb.layout = "us";
-    xkb.variant = "";
+    xkb.layout = "us,ru";
+    xkb.options = "grp:win_space_toggle";
     
     windowManager.bspwm.enable = true; 
   };
@@ -90,12 +91,19 @@
     telegram-desktop
     
     lshw
-    killall
+    busybox
     font-manager
     
     xorg.xev
+    xorg.xwininfo
     brightnessctl
     rofi-power-menu
+    gpick
+    flameshot
+    obs-studio
+    mc
+    vlc
+    pavucontrol
   ];
 
   # Auto-delete generations

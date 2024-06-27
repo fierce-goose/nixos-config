@@ -2,7 +2,7 @@
   services.sxhkd = {
     enable = true;
     keybindings = {
-      "super + {Return,b,d}" = "{alacritty,firefox,rofi -show drun}";
+      "super + {Return,b,d,c,o,s}" = "{alacritty,firefox,rofi -show drun,gpick -p,obs,flameshot gui}";
       "super + alt + b" = "firefox --private-window";
       "super + ctrl + alt + shift + {t}" = "{telegram-desktop}";
 
