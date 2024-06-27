@@ -18,7 +18,7 @@
 
     settings = {
       normal_border_color = "#79A7BF";
-      active_border_color = "#F0A4B9"; #B16F82
+      active_border_color = "#F0A4B9";
       focused_border_color = "#F0A4B9";
       border_width = 2;
       window_gap = 5;

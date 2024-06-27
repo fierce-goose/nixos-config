@@ -6,7 +6,6 @@
       "bar/bar1" = {
         monitor = "eDP-1";
         bottom = false;
-        #tray.position = "right";
 
         width = "1910";
         height = "22";
