@@ -9,6 +9,7 @@
     [
       ./hardware-configuration.nix
       ./nvidia.nix
+      ./autorandr.nix
     ];
 
   # Generation label
@@ -39,13 +40,15 @@
     tailor-gui.enable = true;
   };
 
-  hardware.pulseaudio = {
+  security.rtkit.enable = true;
+  services.pipewire = {
     enable = true;
-    support32Bit = true;
-    extraConfig = "load-module module-combine-sink";
-    package = pkgs.pulseaudioFull;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    jack.enable = true;
   };
-  nixpkgs.config.pulseaudio = true;
 
   fonts = {
     packages = with pkgs; [
@@ -76,35 +79,51 @@
     extraGroups = [ "networkmanager" "wheel" "input" "audio" ];
   };
   
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
+
+  
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    #programs
     neofetch
-    home-manager
     git
-    alacritty
     lxappearance
     firefox
     telegram-desktop
+    gpick
+    flameshot
+    obs-studio
+    vlc
+    mindustry
+    filezilla
+    lftp
     
+    #system
+    home-manager
     lshw
     busybox
     font-manager
-    
     xorg.xev
     xorg.xwininfo
     brightnessctl
     rofi-power-menu
-    gpick
-    flameshot
-    obs-studio
-    mc
-    vlc
     pavucontrol
+
+    #python
+    (python3.withPackages(ps: with ps; [
+      
+    ]))
   ];
+
+  #virtualbox
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enableExtensionPack = true;
+  virtualisation.virtualbox.guest.enable = true;
 
   # Auto-delete generations
   nix.gc = {
@@ -141,6 +160,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05"; # Did you read the comment?
-
+  system.stateVersion = "24.11"; # Did you read the comment?
 }
