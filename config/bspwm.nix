@@ -5,11 +5,10 @@
     enable = true;
     
     extraConfig = ''
-    sleep 10
     feh --no-fehbg --bg-fill ~/wallpapers/japanese_gate.jpg &
-    killall -q polybar
-    polybar -q bar1 &
-    polybar -q bar2 &
+    killall polybar
+    polybar bar1
+    polybar bar2
     '';
 
     monitors = {

@@ -2,7 +2,7 @@
   #services.autorandr.enable = true;
   services.autorandr = {
     enable = true;
-    hooks.postswitch = { "bspwm-reload" = "sleep 3; bspc wm -r"; };
+    hooks.postswitch = { "bspwm-reload" = "bspc wm -r"; };
     profiles = {
       "laptop" = {
         fingerprint = {

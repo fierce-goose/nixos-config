@@ -1,7 +1,10 @@
 { pkgs, ... }: {
   services.polybar = {
     enable = true;
-    script = "";
+    script = ''
+    polybar bar1 &
+    polybar bar2 &
+    '';
     settings = {
       "bar/bar1" = {
         monitor = "eDP-1";
