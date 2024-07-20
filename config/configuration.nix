@@ -8,8 +8,6 @@
   imports =
     [
       ./hardware-configuration.nix
-      ./nvidia.nix
-      ./autorandr.nix
     ];
 
   # Generation label
@@ -39,15 +37,28 @@
     enable = true;
     tailor-gui.enable = true;
   };
+  
+  services.xserver.videoDrivers = [ "intel" "nouveau" ];
 
-  security.rtkit.enable = true;
-  services.pipewire = {
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  programs.hyprland = {
     enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    jack.enable = true;
+  };
+  
+  services.displayManager = {
+    enable = true;
+    sddm = {
+      enable = true;
+      wayland.enable = true;
+    };
+    defaultSession = "hyprland";
+  };
+
+  sound.enable = true;
+  hardware.pulseaudio = {
+    enable = true;
+    support32Bit = true;
   };
 
   fonts = {
@@ -55,22 +66,6 @@
       (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
     ];
   };
-
-  # Configure X11
-  services.xserver = {
-    enable = true;
-    exportConfiguration = true;
-    
-    xkb.layout = "us,ru";
-    xkb.options = "grp:win_space_toggle";
-    
-    windowManager.bspwm.enable = true; 
-  };
-
-  services.displayManager = {
-    defaultSession = "none+bspwm";
-  };
-
   
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.goose = {
@@ -91,28 +86,29 @@
   environment.systemPackages = with pkgs; [
     #programs
     neofetch
+    cowsay
     git
-    lxappearance
     firefox
     telegram-desktop
-    gpick
-    flameshot
     obs-studio
     vlc
+    mpd
     mindustry
     filezilla
-    lftp
-    
+    qbittorrent
+    hyprpicker
+    wofi
+    wofi-emoji
+
     #system
     home-manager
     lshw
     busybox
     font-manager
-    xorg.xev
-    xorg.xwininfo
     brightnessctl
-    rofi-power-menu
     pavucontrol
+    btop
+    wl-clipboard
 
     #python
     (python3.withPackages(ps: with ps; [
@@ -120,10 +116,11 @@
     ]))
   ];
 
+
   #virtualbox
-  virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.host.enableExtensionPack = true;
-  virtualisation.virtualbox.guest.enable = true;
+  #virtualisation.virtualbox.host.enable = true;
+  #virtualisation.virtualbox.host.enableExtensionPack = true;
+  #virtualisation.virtualbox.guest.enable = true;
 
   # Auto-delete generations
   nix.gc = {
