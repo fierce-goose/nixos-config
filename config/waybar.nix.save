@@ -43,7 +43,7 @@
       mainBar = {
         layer = "top";
         position = "top";
-        height = 26;
+        height = 10;
         output = [
           "eDP-1"
           "HDMI-A-1"

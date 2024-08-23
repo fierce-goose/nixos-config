@@ -9,6 +9,7 @@
     ./hyprlock.nix
     ./hyprpaper.nix
     ./waybar.nix
+    ./dunst.nix
 
     ./kitty.nix
     ./yazi.nix 

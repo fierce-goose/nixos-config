@@ -11,11 +11,25 @@
     ];
 
   # Generation label
-  system.nixos.label = "";
+  system.nixos.label = "repeatdelayrate";
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  # Bootloader
+  time.hardwareClockInLocalTime = true;
+  boot = {
+    loader = {
+      grub = {
+        enable = true;
+        devices = [ "nodev" ];
+        useOSProber = true;
+        efiSupport = true;
+      };
+      efi = {
+        canTouchEfiVariables = true;
+      };
+      systemd-boot.enable = false;
+    };
+    kernelPackages = pkgs.linuxPackages_6_8;
+  };
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -27,40 +41,75 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  networking.firewall.enable = true;
+  networking.firewall.allowedTCPPorts = [ 5900 ];
+
+
   # Set your time zone.
   time.timeZone = "America/Vancouver";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_CA.UTF-8";
   
+  # Tuxedo-rs
   hardware.tuxedo-rs = {
     enable = true;
     tailor-gui.enable = true;
   };
+  hardware.tuxedo-keyboard.enable = true;
+
   
-  services.xserver.videoDrivers = [ "intel" "nouveau" ];
+  # Video drivers
+#  services.xserver.videoDrivers = [ "intel" "nouveau" ];
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
+  # Hyprland
   programs.hyprland = {
     enable = true;
   };
   
+  # Display manager
   services.displayManager = {
     enable = true;
     sddm = {
       enable = true;
       wayland.enable = true;
+      settings = {
+        Autologin = {
+          User = "goose";
+          Session = "hyprland";
+        };
+      };
     };
     defaultSession = "hyprland";
   };
 
-  sound.enable = true;
+  # Env variables
+  environment.variables = {
+    # Themes
+    GTK_THEME = "Adwaita-dark";
+    QT_QPA_PLATFORMTHEME = "gtk3";
+  };
+
+  # Pulseaudio
   hardware.pulseaudio = {
     enable = true;
     support32Bit = true;
+    package = pkgs.pulseaudioFull;
+    extraConfig = ''
+      load-module module-switch-on-connect
+    '';
   };
 
+  # Bluetooth
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+
+  # Enable all firmware
+  hardware.enableAllFirmware = true;
+
+  # Fonts
   fonts = {
     packages = with pkgs; [
       (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
@@ -71,20 +120,32 @@
   users.users.goose = {
     isNormalUser = true;
     description = "goose";
-    extraGroups = [ "networkmanager" "wheel" "input" "audio" ];
+    extraGroups = [ "networkmanager" "wheel" "input" "audio" "temviewer" ];
   };
-  
+
+  # Polkit
+  security.polkit.enable = true;
+
+  # PAM
+  security.pam.services.hyprlock = {};
+
+  # ZSH  
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
 
-  
+  # NVim
+  programs.neovim = {
+    enable = true;
+    vimAlias = true;
+  };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    #programs
+    # programs
     neofetch
     cowsay
     git
@@ -98,26 +159,38 @@
     qbittorrent
     hyprpicker
     wofi
-    wofi-emoji
+    tradingview
+    wayvnc
+    gdu
+    tor-browser
+    kalker
+    vscode
 
-    #system
+    # system
     home-manager
-    lshw
     busybox
     font-manager
     brightnessctl
     pavucontrol
     btop
     wl-clipboard
+    wl-clip-persist
+    clipse
+    gnome-themes-extra
+    alsa-utils
 
-    #python
+    # python
     (python3.withPackages(ps: with ps; [
       
     ]))
+
+    # Nim
+    nim
+    nimble
   ];
 
 
-  #virtualbox
+  # virtualbox
   #virtualisation.virtualbox.host.enable = true;
   #virtualisation.virtualbox.host.enableExtensionPack = true;
   #virtualisation.virtualbox.guest.enable = true;

@@ -21,7 +21,7 @@
         kb_options = "grp:win_space_toggle";
 
         repeat_rate = 25;
-        repeat_delay = 300;
+        repeat_delay = 500;
       };
 
       debug = {
@@ -106,12 +106,9 @@
         "SUPER ALT, B, exec, firefox --private-window"
         "SUPER CONTROL ALT SHIFT, T, exec, telegram-desktop"
         "SUPER, O, exec, obs"
-        "SUPER, T, exec, tailor_gui"
-
         "SUPER, C, exec, hyprpicker -a --format=hex"
         "SUPER ALT, C, exec, hyprpicker -a --format=rgb"
         "SUPER, D, exec, wofi --show drun"
-        "SUPER, PERIOD, exec, kitty --class clipse -e clipse"
 
         # media
         ", XF86AudioRaiseVolume, exec, amixer sset Master 5%+"
@@ -123,6 +120,8 @@
 
         ", XF86KbdBrightnessUp, exec, brightnessctl --device=rgb:kbd_backlight set 20%+"
         ", XF86KbdBrightnessDown, exec, brightnessctl --device=rgb:kbd_backlight set 20%-"
+
+        "SUPER, PERIOD, exec, kitty --class clipse -e clipse"
 
         # system
         "SUPER SHIFT, R, exec, reboot"
@@ -164,20 +163,25 @@
         "size 622 652,class:(clipse)"
 
         "float,class:(nmtui)"
-        "size 747 594,class:(nmtui)"
-        "move 100%-w-10 36,class:(nmtui)"
+        "size 622 652,class:(nmtui)"
 
         "float,class:(pavucontrol)"
-        "size 722 552,class:(pavucontrol)"
-        "move 100%-w-10 36,class:(pavucontrol)"
+        "size 622 652,class:(pavucontrol)"
 
-        "float,class:(Tailor)"
-        "size 550 500,class:(Tailor)"
-        "move onscreen cursor -50% -50%,class:(Tailor)"
+        "float,class:(clipse)"
+        "size 622 652,class:()"
+      ];
+
+      layerrule = [
+        
       ];
     };
   };
 }
+
+
+
+
 
 
 
