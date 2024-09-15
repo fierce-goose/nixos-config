@@ -1,2 +1,2 @@
-config/*.save
-config/*.lock
+*.save
+*.lock
