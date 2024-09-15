@@ -6,7 +6,7 @@
     shellIntegration.enableBashIntegration = false;
     shellIntegration.enableFishIntegration = false;
 
-    theme = "Pnevma";
+    theme = "Solarized Dark";
 
     extraConfig = ''
     # 0 disables it; -1 enables it

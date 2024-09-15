@@ -43,12 +43,11 @@
       mainBar = {
         layer = "top";
         position = "top";
-        height = 26;
         output = [
           "eDP-1"
           "HDMI-A-1"
         ];
-        modules-left = [ "hyprland/workspaces" "temperature" "cpu" "memory" "disk#root" "disk#home" ];
+        modules-left = [ "custom/nixos" "hyprland/workspaces" "temperature" "cpu" "memory" "disk#root" "disk#home" ];
         modules-center = [ "clock" ];
         modules-right = [ "hyprland/language" "keyboard-state#capslock" "keyboard-state#numlock" "network" "pulseaudio" "battery" "tray" ];
 
@@ -124,6 +123,9 @@
           format-disconnected = "󰤮 ";
 
           on-click = "kitty --class nmtui nmtui";
+        };
+        "custom/nixos" = {
+          format = " <span size='20pt' color='#aef'>󱄅</span>";
         };
       };
     };

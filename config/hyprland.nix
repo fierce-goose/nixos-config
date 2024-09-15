@@ -25,16 +25,16 @@
       };
 
       debug = {
-        disable_logs = true;
+        disable_logs = false;
       };
 
       general = {
         border_size = 2;
         "col.active_border" = "rgba(ffffffff)";
-        "col.inactive_border" = "rgba(444444ff)";
+        "col.inactive_border" = "rgba(7BAFABff)";
 
-        gaps_in = 10;
-        gaps_out = 20;
+        gaps_in = 8;
+        gaps_out = 40;
       };
 
       decoration = {
@@ -43,19 +43,26 @@
 
         rounding = 10;
 
-        shadow_range = 20;
-
         blur = {
           enabled = true;
-          size = 2;
-          passes = 6;
+          size = 8;
+          passes = 4;
+          #ignore_opacity = true;
+          #xray = true;
+          contrast = 1.0;
+          brightness = 1.0;
+          #vibrancy = 0.0;
+          #vibrancy_darkness = 1.0;
         };
+
+        drop_shadow = true;
+        shadow_range = 15;
+        "col.shadow" = "rgba(0B191Aee)";
       };
 
       exec-once = [
         "hyprlock"
         "waybar"
-        "wl-clip-persist --clipboard regular"
         "clipse -listen"
       ];
 
@@ -104,9 +111,11 @@
         "SUPER, RETURN, exec, kitty"
         "SUPER, B, exec, firefox"
         "SUPER ALT, B, exec, firefox --private-window"
-        "SUPER CONTROL ALT SHIFT, T, exec, telegram-desktop"
+        "SUPER CONTROL ALT SHIFT, T, exec, ayugram-desktop"
         "SUPER, O, exec, obs"
         "SUPER, T, exec, tailor_gui"
+        "SUPER, N, exec, obsidian"
+        "SUPER, V, exec, code"
 
         "SUPER, C, exec, hyprpicker -a --format=hex"
         "SUPER ALT, C, exec, hyprpicker -a --format=rgb"
@@ -123,6 +132,10 @@
 
         ", XF86KbdBrightnessUp, exec, brightnessctl --device=rgb:kbd_backlight set 20%+"
         ", XF86KbdBrightnessDown, exec, brightnessctl --device=rgb:kbd_backlight set 20%-"
+
+        ", Print, exec, grim -g \"$(slurp)\" - | wl-copy -t image/png"
+        "ALT, Print, exec, grim -g \"$(slurp)\""
+        "CONTROL, Print, exec, grim"
 
         # system
         "SUPER SHIFT, R, exec, reboot"
@@ -174,6 +187,9 @@
         "float,class:(Tailor)"
         "size 550 500,class:(Tailor)"
         "move onscreen cursor -50% -50%,class:(Tailor)"
+
+        "opacity 1.5, title:(.*(YouTube — Mozilla Firefox Private Browsing)"
+        "opacity 1.5, title:(.*)(YouTube — Mozilla Firefox)"
       ];
     };
   };

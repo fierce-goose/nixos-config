@@ -2,16 +2,17 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
     [
       ./hardware-configuration.nix
+      # ./ayugram.nix
     ];
 
   # Generation label
-  system.nixos.label = "repeatdelayrate";
+  system.nixos.label = "";
 
   # Bootloader
   time.hardwareClockInLocalTime = true;
@@ -29,6 +30,7 @@
       systemd-boot.enable = false;
     };
     kernelPackages = pkgs.linuxPackages_6_8;
+    supportedFilesystems = [ "ntfs" ];
   };
 
   networking.hostName = "nixos"; # Define your hostname.
@@ -47,6 +49,7 @@
 
   # Set your time zone.
   time.timeZone = "America/Vancouver";
+  services.ntp.enable = false;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_CA.UTF-8";
@@ -120,7 +123,7 @@
   users.users.goose = {
     isNormalUser = true;
     description = "goose";
-    extraGroups = [ "networkmanager" "wheel" "input" "audio" "temviewer" ];
+    extraGroups = [ "networkmanager" "wheel" "input" "audio" ];
   };
 
   # Polkit
@@ -140,7 +143,9 @@
   };
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -150,10 +155,9 @@
     cowsay
     git
     firefox
-    telegram-desktop
+    inputs.ayugram-desktop.packages.${pkgs.system}.default
     obs-studio
     vlc
-    mpd
     mindustry
     filezilla
     qbittorrent
@@ -165,6 +169,13 @@
     tor-browser
     kalker
     vscode
+    nemo
+    grim
+    slurp
+    obsidian
+    feh
+    micro
+    discord-ptb
 
     # system
     home-manager
@@ -174,7 +185,6 @@
     pavucontrol
     btop
     wl-clipboard
-    wl-clip-persist
     clipse
     gnome-themes-extra
     alsa-utils
@@ -187,7 +197,7 @@
     # Nim
     nim
     nimble
-  ];
+  ];  
 
 
   # virtualbox
