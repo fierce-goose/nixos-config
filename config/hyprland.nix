@@ -130,6 +130,9 @@
         ", XF86MonBrightnessUp, exec, brightnessctl set 5%+"
         ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
 
+        "ALT, XF86MonBrightnessUp, exec, brightnessctl set 1%+"
+        "ALT, XF86MonBrightnessDown, exec, brightnessctl set 1%-"
+
         ", XF86KbdBrightnessUp, exec, brightnessctl --device=rgb:kbd_backlight set 20%+"
         ", XF86KbdBrightnessDown, exec, brightnessctl --device=rgb:kbd_backlight set 20%-"
 
