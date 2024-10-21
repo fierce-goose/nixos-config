@@ -14,7 +14,7 @@
         padding-bottom: 0;
       }
       window#waybar {
-        background: rgba(0, 5, 0, 0.5);
+        background: rgba(20, 49, 47, 0.67);
       }
       #workspaces, #clock, #mpd, #temperature, #cpu, #memory, #disk, #battery, #pulseaudio, #language, #network, #tray {
         padding: 0 0;

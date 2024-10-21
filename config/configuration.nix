@@ -8,7 +8,6 @@
   imports =
     [
       ./hardware-configuration.nix
-      # ./ayugram.nix
     ];
 
   # Generation label
@@ -63,7 +62,7 @@
 
   
   # Video drivers
-#  services.xserver.videoDrivers = [ "intel" "nouveau" ];
+  services.xserver.videoDrivers = [ "intel" "nouveau" ];
 
   # Hyprland
   programs.hyprland = {
@@ -108,6 +107,7 @@
     enable = true;
     powerOnBoot = true;
   };
+  services.blueman.enable = true;
 
   # Enable all firmware
   hardware.enableAllFirmware = true;
@@ -123,7 +123,7 @@
   users.users.goose = {
     isNormalUser = true;
     description = "goose";
-    extraGroups = [ "networkmanager" "wheel" "input" "audio" ];
+    extraGroups = [ "networkmanager" "wheel" "input" "audio" "tty" "dialout" ];
   };
 
   # Polkit
@@ -145,6 +145,21 @@
   # Allow unfree packages
   nixpkgs.config = {
     allowUnfree = true;
+  };
+
+  # File Systems
+  fileSystems = {
+    "/home/goose/sd" = {
+      device = "/dev/mmcblk0p1";
+      fsType = "vfat";
+      options = [ "rw" ];
+  	};
+  	"/home/goose/windows" = {
+      device = "/dev/nvme0n1p3";
+  	};
+  	"/home/goose/t" = {
+  	  device = "/dev/nvme0n1p5";
+  	};
   };
 
   # List packages installed in system profile. To search, run:
@@ -169,6 +184,7 @@
     tor-browser
     kalker
     vscode
+    arduino-ide
     nemo
     grim
     slurp
@@ -176,6 +192,8 @@
     feh
     micro
     discord-ptb
+    zip
+    unzip
 
     # system
     home-manager
@@ -191,7 +209,8 @@
 
     # python
     (python3.withPackages(ps: with ps; [
-      
+        # for esp32
+        ps.pyserial
     ]))
 
     # Nim

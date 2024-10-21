@@ -29,25 +29,31 @@
       };
 
       general = {
-        border_size = 2;
+        border_size = 1;
         "col.active_border" = "rgba(ffffffff)";
-        "col.inactive_border" = "rgba(7BAFABff)";
+        "col.inactive_border" = "rgba(7bafabff)";
 
-        gaps_in = 8;
-        gaps_out = 40;
+        gaps_in = 4;
+        gaps_out = 30;
+      };
+
+      cursor = {
+        warp_on_change_workspace = false;
+        persistent_warps = false;
+        no_warps = false;
       };
 
       decoration = {
-        active_opacity = 0.75;
-        inactive_opacity = 0.7;
+        active_opacity = 0.8;
+        inactive_opacity = 0.6;
 
-        rounding = 10;
+        rounding = 5;
 
         blur = {
           enabled = true;
           size = 8;
           passes = 4;
-          #ignore_opacity = true;
+          ignore_opacity = true;
           #xray = true;
           contrast = 1.0;
           brightness = 1.0;
@@ -57,12 +63,26 @@
 
         drop_shadow = true;
         shadow_range = 15;
-        "col.shadow" = "rgba(0B191Aee)";
+        "col.shadow" = "rgba(0B191A66)";
+      };
+
+      group = {
+      	"col.border_active" = "0xff68902f";
+      	"col.border_inactive" = "0xee68902f";
+      	groupbar = {
+      	  enabled = true;
+      	  "col.active" = "0xaa14312f";
+      	  "col.inactive" = "0xa914312f";
+      	};
+      };
+
+      misc = {
+      	
       };
 
       exec-once = [
+        "blueman-applet & sleep 2; waybar & sleep 2; killall -SIGUSR2 waybar"
         "hyprlock"
-        "waybar"
         "clipse -listen"
       ];
 
@@ -107,15 +127,23 @@
         "SUPER SHIFT, 9, movetoworkspace, 9"
         "SUPER SHIFT, 0, movetoworkspace, 10"
 
+        "SUPER, K, moveoutofgroup"
+        "SUPER, J, togglegroup"
+        "SUPER, L, changegroupactive, f"
+        "SUPER, H, changegroupactive, b"
+        
+
         # programs
         "SUPER, RETURN, exec, kitty"
         "SUPER, B, exec, firefox"
         "SUPER ALT, B, exec, firefox --private-window"
+        "SUPER CONTROL ALT SHIFT, B, exec, tor-browser"
         "SUPER CONTROL ALT SHIFT, T, exec, ayugram-desktop"
         "SUPER, O, exec, obs"
         "SUPER, T, exec, tailor_gui"
         "SUPER, N, exec, obsidian"
         "SUPER, V, exec, code"
+        "SUPER, E, exec, nemo"
 
         "SUPER, C, exec, hyprpicker -a --format=hex"
         "SUPER ALT, C, exec, hyprpicker -a --format=rgb"
@@ -144,7 +172,7 @@
         "SUPER SHIFT, R, exec, reboot"
         "SUPER SHIFT, P, exec, poweroff"
         "SUPER SHIFT, L, exec, hyprlock"
-        
+        "SUPER SHIFT ALT, R, exec, hyprctl reload"
       ];
 
       bindm = [
