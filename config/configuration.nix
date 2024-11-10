@@ -2,12 +2,13 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
-
-{
+{ config, pkgs, inputs, ... }: {
   imports =
     [
       ./hardware-configuration.nix
+      ./wacom.nix
+      ./polkit.nix
+      ./nvidia.nix
     ];
 
   # Generation label
@@ -60,10 +61,6 @@
   };
   hardware.tuxedo-keyboard.enable = true;
 
-  
-  # Video drivers
-  services.xserver.videoDrivers = [ "intel" "nouveau" ];
-
   # Hyprland
   programs.hyprland = {
     enable = true;
@@ -84,6 +81,7 @@
     };
     defaultSession = "hyprland";
   };
+  services.logind.lidSwitchExternalPower = "ignore";
 
   # Env variables
   environment.variables = {
@@ -126,10 +124,7 @@
     extraGroups = [ "networkmanager" "wheel" "input" "audio" "tty" "dialout" ];
   };
 
-  # Polkit
-  security.polkit.enable = true;
-
-  # PAM
+  # Hyprlock
   security.pam.services.hyprlock = {};
 
   # ZSH  
@@ -170,7 +165,7 @@
     cowsay
     git
     firefox
-    inputs.ayugram-desktop.packages.${pkgs.system}.default
+    inputs.ayugram-desktop.packages.${pkgs.system}.ayugram-desktop
     obs-studio
     vlc
     mindustry
@@ -179,7 +174,6 @@
     hyprpicker
     wofi
     tradingview
-    wayvnc
     gdu
     tor-browser
     kalker
@@ -194,6 +188,7 @@
     discord-ptb
     zip
     unzip
+    krita
 
     # system
     home-manager
@@ -216,13 +211,7 @@
     # Nim
     nim
     nimble
-  ];  
-
-
-  # virtualbox
-  #virtualisation.virtualbox.host.enable = true;
-  #virtualisation.virtualbox.host.enableExtensionPack = true;
-  #virtualisation.virtualbox.guest.enable = true;
+  ];
 
   # Auto-delete generations
   nix.gc = {

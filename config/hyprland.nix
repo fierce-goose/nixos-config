@@ -22,6 +22,8 @@
 
         repeat_rate = 25;
         repeat_delay = 300;
+
+        numlock_by_default = true;
       };
 
       debug = {
@@ -35,12 +37,6 @@
 
         gaps_in = 4;
         gaps_out = 30;
-      };
-
-      cursor = {
-        warp_on_change_workspace = false;
-        persistent_warps = false;
-        no_warps = false;
       };
 
       decoration = {
@@ -77,7 +73,7 @@
       };
 
       misc = {
-      	
+      	middle_click_paste = false;
       };
 
       exec-once = [
@@ -131,7 +127,6 @@
         "SUPER, J, togglegroup"
         "SUPER, L, changegroupactive, f"
         "SUPER, H, changegroupactive, b"
-        
 
         # programs
         "SUPER, RETURN, exec, kitty"
@@ -172,7 +167,7 @@
         "SUPER SHIFT, R, exec, reboot"
         "SUPER SHIFT, P, exec, poweroff"
         "SUPER SHIFT, L, exec, hyprlock"
-        "SUPER SHIFT ALT, R, exec, hyprctl reload"
+        "SUPER SHIFT ALT, R, exec, hyprctl reload; killall waybar; waybar &"
       ];
 
       bindm = [
@@ -219,8 +214,7 @@
         "size 550 500,class:(Tailor)"
         "move onscreen cursor -50% -50%,class:(Tailor)"
 
-        "opacity 1.5, title:(.*(YouTube — Mozilla Firefox Private Browsing)"
-        "opacity 1.5, title:(.*)(YouTube — Mozilla Firefox)"
+        # "opacity 1.5, title:(.*)(YouTube — Mozilla Firefox)(.*)"
       ];
     };
   };
