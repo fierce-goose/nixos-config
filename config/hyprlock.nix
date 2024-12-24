@@ -18,7 +18,7 @@
         size = "1920, 100";
         position = "0, -200";
         dots_center = true;
-        inner_color = "rgba(14, 25, 22, 0.6)";
+        inner_color = "rgba(14, 25, 22, 0.1)";
         font_color = "rgba(234, 242, 229, 0.85)";
         outline_thickness = 0;
         fade_on_empty = false;

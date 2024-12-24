@@ -39,6 +39,10 @@
         gaps_out = 30;
       };
 
+      binds = {
+        workspace_center_on = 1;
+      };
+
       decoration = {
         active_opacity = 0.8;
         inactive_opacity = 0.6;
@@ -57,9 +61,11 @@
           #vibrancy_darkness = 1.0;
         };
 
-        drop_shadow = true;
-        shadow_range = 15;
-        "col.shadow" = "rgba(0B191A66)";
+		shadow = {
+        	enabled = true;
+        	range = 15;
+        	color = "rgba(0B191A66)";
+        };
       };
 
       group = {

@@ -5,6 +5,15 @@
       manager = {
         show_hidden = true;
       };
+      opener = {
+        edit = [
+          {
+            run = "$EDITOR \"$@\"";
+            block = true;
+            for = "unix";
+          }
+        ];
+      };
     };
   };
 }

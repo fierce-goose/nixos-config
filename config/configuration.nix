@@ -9,6 +9,7 @@
       ./wacom.nix
       ./polkit.nix
       ./nvidia.nix
+      ./nvim.nix
     ];
 
   # Generation label
@@ -29,7 +30,7 @@
       };
       systemd-boot.enable = false;
     };
-    kernelPackages = pkgs.linuxPackages_6_8;
+    kernelPackages = pkgs.linuxPackages;
     supportedFilesystems = [ "ntfs" ];
   };
 
@@ -59,7 +60,7 @@
     enable = true;
     tailor-gui.enable = true;
   };
-  hardware.tuxedo-keyboard.enable = true;
+  hardware.tuxedo-drivers.enable = true;
 
   # Hyprland
   programs.hyprland = {
@@ -90,16 +91,6 @@
     QT_QPA_PLATFORMTHEME = "gtk3";
   };
 
-  # Pulseaudio
-  hardware.pulseaudio = {
-    enable = true;
-    support32Bit = true;
-    package = pkgs.pulseaudioFull;
-    extraConfig = ''
-      load-module module-switch-on-connect
-    '';
-  };
-
   # Bluetooth
   hardware.bluetooth = {
     enable = true;
@@ -113,7 +104,7 @@
   # Fonts
   fonts = {
     packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+      nerd-fonts.symbols-only
     ];
   };
   
@@ -131,12 +122,6 @@
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
 
-  # NVim
-  programs.neovim = {
-    enable = true;
-    vimAlias = true;
-  };
-
   # Allow unfree packages
   nixpkgs.config = {
     allowUnfree = true;
@@ -144,17 +129,21 @@
 
   # File Systems
   fileSystems = {
+    "/home" = {
+      device = "/dev/nvme0n1p9";
+    };
     "/home/goose/sd" = {
       device = "/dev/mmcblk0p1";
-      fsType = "vfat";
       options = [ "rw" ];
-  	};
-  	"/home/goose/windows" = {
+    };
+    "/home/goose/windows" = {
       device = "/dev/nvme0n1p3";
-  	};
-  	"/home/goose/t" = {
-  	  device = "/dev/nvme0n1p5";
-  	};
+      fsType = "ntfs";
+      options = [ "rw" ];
+    };
+    "/home/goose/t" = {
+      device = "/dev/nvme0n1p5";
+    };
   };
 
   # List packages installed in system profile. To search, run:
@@ -189,6 +178,8 @@
     zip
     unzip
     krita
+    foliate
+    viber
 
     # system
     home-manager
@@ -201,9 +192,10 @@
     clipse
     gnome-themes-extra
     alsa-utils
+    ntfs3g
 
     # python
-    (python3.withPackages(ps: with ps; [
+    (python3.withPackages(ps: [
         # for esp32
         ps.pyserial
     ]))
