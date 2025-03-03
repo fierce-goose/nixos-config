@@ -7,13 +7,15 @@
     [
       ./hardware-configuration.nix
       ./wacom.nix
-      ./polkit.nix
+      # ./polkit.nix
       ./nvidia.nix
       ./nvim.nix
+      ./cosmic.nix
+      # ./kde.nix
     ];
 
   # Generation label
-  system.nixos.label = "";
+  system.nixos.label = "cosmic";
 
   # Bootloader
   time.hardwareClockInLocalTime = true;
@@ -30,7 +32,7 @@
       };
       systemd-boot.enable = false;
     };
-    kernelPackages = pkgs.linuxPackages;
+    kernelPackages = pkgs.linuxPackages_6_11;
     supportedFilesystems = [ "ntfs" ];
   };
 
@@ -62,28 +64,6 @@
   };
   hardware.tuxedo-drivers.enable = true;
 
-  # Hyprland
-  programs.hyprland = {
-    enable = true;
-  };
-  
-  # Display manager
-  services.displayManager = {
-    enable = true;
-    sddm = {
-      enable = true;
-      wayland.enable = true;
-      settings = {
-        Autologin = {
-          User = "goose";
-          Session = "hyprland";
-        };
-      };
-    };
-    defaultSession = "hyprland";
-  };
-  services.logind.lidSwitchExternalPower = "ignore";
-
   # Env variables
   environment.variables = {
     # Themes
@@ -92,11 +72,10 @@
   };
 
   # Bluetooth
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-  };
-  services.blueman.enable = true;
+  # hardware.bluetooth = {
+    # enable = true;
+    # powerOnBoot = true;
+  # };
 
   # Enable all firmware
   hardware.enableAllFirmware = true;
@@ -115,9 +94,6 @@
     extraGroups = [ "networkmanager" "wheel" "input" "audio" "tty" "dialout" ];
   };
 
-  # Hyprlock
-  security.pam.services.hyprlock = {};
-
   # ZSH  
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
@@ -130,11 +106,7 @@
   # File Systems
   fileSystems = {
     "/home" = {
-      device = "/dev/nvme0n1p9";
-    };
-    "/home/goose/sd" = {
-      device = "/dev/mmcblk0p1";
-      options = [ "rw" ];
+      device = "/dev/nvme0n1p5";
     };
     "/home/goose/windows" = {
       device = "/dev/nvme0n1p3";
@@ -142,9 +114,15 @@
       options = [ "rw" ];
     };
     "/home/goose/t" = {
-      device = "/dev/nvme0n1p5";
+      device = "/dev/nvme0n1p4";
     };
   };
+
+  # Swap
+  swapDevices = [{
+    device = "/var/lib/swapfile";
+    size = 16*1024;
+  }];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -154,44 +132,33 @@
     cowsay
     git
     firefox
-    inputs.ayugram-desktop.packages.${pkgs.system}.ayugram-desktop
+    ayugram-desktop
     obs-studio
     vlc
     mindustry
     filezilla
     qbittorrent
-    hyprpicker
-    wofi
     tradingview
     gdu
     tor-browser
     kalker
-    vscode
     arduino-ide
-    nemo
-    grim
-    slurp
     obsidian
     feh
-    micro
-    discord-ptb
-    zip
-    unzip
+    discord
+    zip unzip
     krita
     foliate
     viber
+    steam
+    gparted
 
     # system
     home-manager
     busybox
-    font-manager
     brightnessctl
-    pavucontrol
     btop
-    wl-clipboard
-    clipse
     gnome-themes-extra
-    alsa-utils
     ntfs3g
 
     # python
@@ -203,6 +170,11 @@
     # Nim
     nim
     nimble
+    gcc
+
+    # Rust
+    rustc
+    cargo
   ];
 
   # Auto-delete generations

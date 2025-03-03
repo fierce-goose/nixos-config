@@ -1,0 +1,7 @@
+(
+    rules: "",
+    model: "pc104",
+    layout: "us,ru",
+    variant: ",",
+    options: Some("terminate:ctrl_alt_bksp,compose:menu,grp:win_space_toggle"),
+)

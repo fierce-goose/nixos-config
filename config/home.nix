@@ -1,15 +1,9 @@
 { config, pkgs, ... }: {
   home.username = "goose";
-  home.stateVersion = "24.11";
+  home.stateVersion = "25.05";
     
   imports = [
     ./zsh.nix
-
-    ./hyprland.nix
-    ./hyprlock.nix
-    ./hyprpaper.nix
-    ./waybar.nix
-    ./dunst.nix
 
     ./kitty.nix
     ./yazi.nix 

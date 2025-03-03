@@ -1,0 +1,87 @@
+{
+    (
+        modifiers: [
+            Super,
+            Alt,
+        ],
+        key: "b",
+        description: Some("private window firefox"),
+    ): Spawn("firefox --private-window"),
+    (
+        modifiers: [
+            Super,
+            Ctrl,
+            Shift,
+        ],
+        key: "r",
+        description: Some("reboot"),
+    ): Spawn("reboot"),
+    (
+        modifiers: [
+            Super,
+            Ctrl,
+            Alt,
+            Shift,
+        ],
+        key: "b",
+        description: Some("tor"),
+    ): Spawn("tor-browser"),
+    (
+        modifiers: [
+            Super,
+            Ctrl,
+            Shift,
+        ],
+        key: "p",
+        description: Some("poweroff"),
+    ): Spawn("poweroff"),
+    (
+        modifiers: [
+            Super,
+            Shift,
+        ],
+        key: "m",
+    ): Minimize,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "Return",
+        description: Some("kitty"),
+    ): Spawn("kitty"),
+    (
+        modifiers: [],
+        key: "XF86KbdBrightnessDown",
+        description: Some("dec kbd brightness"),
+    ): Spawn("brightnessctl --device=rgb:kbd_backlight set 20%-"),
+    (
+        modifiers: [
+            Super,
+        ],
+    ): Disable,
+    (
+        modifiers: [],
+        key: "XF86KbdBrightnessUp",
+        description: Some("inc kbd brightness"),
+    ): Spawn("brightnessctl --device=rgb:kbd_backlight set 20%+"),
+    (
+        modifiers: [
+            Super,
+            Ctrl,
+            Alt,
+            Shift,
+        ],
+        key: "t",
+    ): Spawn("ayugram-desktop"),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "t",
+    ): Disable,
+    (
+        modifiers: [],
+        key: "XF86KbdLightOnOff",
+        description: Some("open tailor gui"),
+    ): Spawn("tailor_gui"),
+}

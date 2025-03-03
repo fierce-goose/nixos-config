@@ -1,0 +1,9 @@
+(
+    output: "all",
+    source: Path("/home/goose/wallpapers"),
+    filter_by_theme: false,
+    rotation_frequency: 7200,
+    filter_method: Lanczos,
+    scaling_mode: Zoom,
+    sampling_method: Alphanumeric,
+)

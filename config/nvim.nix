@@ -2,47 +2,48 @@
   programs.nixvim.config = {
     enable = true;
     defaultEditor = true;
-
     plugins = {
       web-devicons.enable = true;
-
       airline = {
         enable = true;
         settings = {
           theme = "everforest";
         };
       };
-
-      nvim-tree.enable = true;
+      nvim-tree = {
+        enable = true;
+        hijackUnnamedBufferWhenOpening = true;
+        openOnSetup = true;
+      };
       comment.enable = true;
-      
-      barbar.enable = true;
 
+      barbar.enable = true;
       treesitter = {
         enable = true;
         settings = {
           autoInstall = true;
-          
+
           ensureInstalled = [
             "nim"
             "nix"
+            "lua"
+            "rust"
           ];
-          
+
           highlight = {
             enable = true;
             additionalVimRegexHighlighting = false;
           };
         };
       };
-
       lsp = {
         enable = true;
         servers = {
-          nim_langserver.enable = true;
+          nimls.enable = true;
           nil_ls.enable = true;
+          rust_analyzer.enable = true;
         };
       };
-
       cmp = {
         enable = true;
         autoEnableSources = true;
@@ -57,35 +58,38 @@
           "<Tab>" = "cmp.mapping.select_next_item()";
           "<C-Space>" = "cmp.mapping.complete()";
           "<C-k>" = "cmp.mapping.scroll_docs(-1)";
-          "<Esc>" = "cmp.mapping.close()";
           "<C-j>" = "cmp.mapping.scroll_docs(1)";
+          "<Esc>" = "cmp.mapping.close()";
         };
       };
-
       nvim-autopairs.enable = true;
+      nvim-ufo = {
+      	enable = true;
+      };
     };
-    
 
     extraPlugins = with pkgs.vimPlugins; [
       vim-devicons
       everforest
     ];
-
+    clipboard = {
+      register = "unnamedplus";
+      providers.wl-copy.enable = true;
+    };
     opts = {
       number = true;
       relativenumber = true;
       autoindent = true;
       scrolloff = 30;
       ttyfast = true;
-      clipboard = "unnamedplus";
       cursorline = true;
+
+      foldlevel = 99;
+      foldenable = true;
     };
-
     colorscheme = "everforest";
-
     globals.mapleader = " ";
     globals.maplocalleader = " ";
-
     keymaps = [
       {
         mode = "n";
@@ -136,8 +140,32 @@
         action = ":lua vim.lsp.buf.definition()\n";
         options.silent = true;
       }
+      # ufo
+      {
+        mode = "n";
+        key = "zR";
+        action = ":lua require('ufo').openAllFolds()\n";
+        options.silent = true;
+      }
+      {
+        mode = "n";
+        key = "zM";
+        action = ":lua require('ufo').closeAllFolds()\n";
+        options.silent = true;
+      }
+      {
+        mode = "n";
+        key = "zr";
+        action = ":lua require('ufo').openAllFolds()\n";
+        options.silent = true;
+      }
+      {
+        mode = "n";
+        key = "zm";
+        action = ":lua require('ufo').closeAllFolds()\n";
+        options.silent = true;
+      }
     ];
-
     autoCmd = [
       {
         event = ["FileType"];
@@ -146,21 +174,9 @@
       }
       {
         event = ["FileType"];
-        pattern = ["nix"];
+        pattern = ["nix" "lua"];
         command = "setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab";
       }
     ];
-
-    extraConfigLua = ''
-      vim.api.nvim_create_autocmd("BufEnter", {
-        nested = true,
-        callback = function()
-          if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil then
-            vim.cmd "quit"
-          end
-        end
-      })
-    '';
   };
 }
-
