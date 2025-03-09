@@ -135,7 +135,6 @@
     ayugram-desktop
     obs-studio
     vlc
-    mindustry
     filezilla
     qbittorrent
     tradingview
@@ -152,6 +151,10 @@
     viber
     steam
     gparted
+
+    #games
+    hmcl
+    mindustry
 
     # system
     home-manager
