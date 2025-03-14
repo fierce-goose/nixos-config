@@ -151,6 +151,7 @@
     viber
     steam
     gparted
+    bottles
 
     #games
     hmcl
