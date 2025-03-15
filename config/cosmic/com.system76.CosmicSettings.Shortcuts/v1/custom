@@ -1,21 +1,25 @@
 {
     (
-        modifiers: [
-            Super,
-            Alt,
-        ],
-        key: "b",
-        description: Some("private window firefox"),
-    ): Spawn("firefox --private-window"),
+        modifiers: [],
+        key: "XF86KbdLightOnOff",
+        description: Some("open tailor gui"),
+    ): Spawn("tailor_gui"),
     (
         modifiers: [
             Super,
-            Ctrl,
-            Shift,
         ],
-        key: "r",
-        description: Some("reboot"),
-    ): Spawn("reboot"),
+        key: "t",
+    ): Disable,
+    (
+        modifiers: [],
+        key: "XF86KbdBrightnessDown",
+        description: Some("dec kbd brightness"),
+    ): Spawn("brightnessctl --device=rgb:kbd_backlight set 20%-"),
+    (
+        modifiers: [
+            Super,
+        ],
+    ): Disable,
     (
         modifiers: [
             Super,
@@ -30,18 +34,20 @@
         modifiers: [
             Super,
             Ctrl,
+            Alt,
             Shift,
         ],
-        key: "p",
-        description: Some("poweroff"),
-    ): Spawn("poweroff"),
+        key: "t",
+    ): Spawn("ayugram-desktop"),
     (
         modifiers: [
             Super,
+            Ctrl,
             Shift,
         ],
-        key: "m",
-    ): Minimize,
+        key: "r",
+        description: Some("reboot"),
+    ): Spawn("reboot"),
     (
         modifiers: [
             Super,
@@ -50,15 +56,27 @@
         description: Some("kitty"),
     ): Spawn("kitty"),
     (
-        modifiers: [],
-        key: "XF86KbdBrightnessDown",
-        description: Some("dec kbd brightness"),
-    ): Spawn("brightnessctl --device=rgb:kbd_backlight set 20%-"),
+        modifiers: [
+            Super,
+            Alt,
+        ],
+        key: "b",
+        description: Some("private window firefox"),
+    ): Spawn("firefox --private-window"),
     (
         modifiers: [
             Super,
         ],
-    ): Disable,
+        key: "n",
+        description: Some("obsidian"),
+    ): Spawn("obsidian"),
+    (
+        modifiers: [
+            Super,
+            Shift,
+        ],
+        key: "m",
+    ): Minimize,
     (
         modifiers: [],
         key: "XF86KbdBrightnessUp",
@@ -68,20 +86,9 @@
         modifiers: [
             Super,
             Ctrl,
-            Alt,
             Shift,
         ],
-        key: "t",
-    ): Spawn("ayugram-desktop"),
-    (
-        modifiers: [
-            Super,
-        ],
-        key: "t",
-    ): Disable,
-    (
-        modifiers: [],
-        key: "XF86KbdLightOnOff",
-        description: Some("open tailor gui"),
-    ): Spawn("tailor_gui"),
+        key: "p",
+        description: Some("poweroff"),
+    ): Spawn("poweroff"),
 }
