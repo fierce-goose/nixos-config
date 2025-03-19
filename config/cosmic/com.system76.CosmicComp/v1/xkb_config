@@ -1,7 +1,9 @@
 (
     rules: "",
     model: "pc104",
-    layout: "us,ru",
+    layout: "ru,us",
     variant: ",",
     options: Some("terminate:ctrl_alt_bksp,compose:menu,grp:win_space_toggle"),
+    repeat_delay: 600,
+    repeat_rate: 25,
 )
