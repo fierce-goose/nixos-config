@@ -31,15 +31,15 @@
             alpha: 1.0,
         ),
         selected_text: (
-            red: 0.5529412,
-            green: 0.6313726,
-            blue: 0.0039215684,
+            red: 0.654902,
+            green: 0.7529412,
+            blue: 0.5019608,
             alpha: 1.0,
         ),
         focus: (
-            red: 0.5529412,
-            green: 0.6313726,
-            blue: 0.0039215684,
+            red: 0.654902,
+            green: 0.7529412,
+            blue: 0.5019608,
             alpha: 1.0,
         ),
         divider: (
@@ -92,9 +92,9 @@
         alpha: 1.0,
     ),
     small_widget: (
-        red: 0.9270477,
-        green: 0.91143155,
-        blue: 0.82175076,
+        red: 0.91522235,
+        green: 0.9095655,
+        blue: 0.88061816,
         alpha: 0.25,
     ),
 )

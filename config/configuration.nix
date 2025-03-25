@@ -15,7 +15,7 @@
     ];
 
   # Generation label
-  system.nixos.label = "cosmic";
+  system.nixos.label = "";
 
   # Bootloader
   time.hardwareClockInLocalTime = true;
@@ -71,12 +71,6 @@
     QT_QPA_PLATFORMTHEME = "gtk3";
   };
 
-  # Bluetooth
-  # hardware.bluetooth = {
-    # enable = true;
-    # powerOnBoot = true;
-  # };
-
   # Enable all firmware
   hardware.enableAllFirmware = true;
 
@@ -126,6 +120,9 @@
 
   # Flatpak
   services.flatpak.enable = true;
+
+  # disable sleep when lid closed
+  services.logind.lidSwitch = "ignore";
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

@@ -1,1 +1,5 @@
-Some([])
+Some([
+    "com.system76.CosmicAppList",
+    "com.system76.CosmicPanelAppButton",
+    "com.system76.CosmicAppletMinimize",
+])

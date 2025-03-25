@@ -2,6 +2,7 @@
     # Enable OpenGL
     hardware.graphics = {
         enable = true;
+        extraPackages = with pkgs; [nvidia-vaapi-driver];
     };
 
     # Load nvidia driver for Xorg and Wayland
@@ -47,17 +48,6 @@
           intelBusId = "PCI:0:2:0";
           nvidiaBusId = "PCI:1:0:0";
                     # amdgpuBusId = "PCI:54:0:0"; For AMD GPU
-        };
-    };
-
-    specialisation = {
-        on-the-go.configuration = {
-            system.nixos.tags = [ "on-the-go" ];
-            hardware.nvidia = {
-                prime.offload.enable = lib.mkForce true;
-                prime.offload.enableOffloadCmd = lib.mkForce true;
-                prime.sync.enable = lib.mkForce false;
-            };
         };
     };
 }
