@@ -1,0 +1,7 @@
+[
+    (
+        display: "1+2",
+        expression: "31.00+2.00",
+        result: "33",
+    ),
+]

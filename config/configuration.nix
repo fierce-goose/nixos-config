@@ -7,11 +7,9 @@
     [
       ./hardware-configuration.nix
       ./wacom.nix
-      # ./polkit.nix
       ./nvidia.nix
       ./nvim.nix
       ./cosmic.nix
-      # ./kde.nix
     ];
 
   # Generation label
@@ -32,7 +30,7 @@
       };
       systemd-boot.enable = false;
     };
-    kernelPackages = pkgs.linuxPackages_6_11;
+    kernelPackages = pkgs.linuxPackages-rt_latest;
     supportedFilesystems = [ "ntfs" ];
   };
 
@@ -97,29 +95,11 @@
     allowUnfree = true;
   };
 
-  # File Systems
-  fileSystems = {
-    "/home" = {
-      device = "/dev/nvme0n1p5";
-    };
-    "/home/goose/windows" = {
-      device = "/dev/nvme0n1p3";
-      fsType = "ntfs";
-      options = [ "rw" ];
-    };
-    "/home/goose/t" = {
-      device = "/dev/nvme0n1p4";
-    };
-  };
-
   # Swap
   swapDevices = [{
     device = "/var/lib/swapfile";
     size = 16*1024;
   }];
-
-  # Flatpak
-  services.flatpak.enable = true;
 
   # disable sleep when lid closed
   services.logind.lidSwitch = "ignore";
@@ -137,7 +117,6 @@
     vlc
     filezilla
     qbittorrent
-    tradingview
     gdu
     tor-browser
     kalker
@@ -172,6 +151,8 @@
     # Nim
     nim
     nimble
+
+    # C
     gcc
 
     # Rust
@@ -214,5 +195,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.11"; # Did you read the comment?
+  system.stateVersion = "25.05"; # Did you read the comment?
 }

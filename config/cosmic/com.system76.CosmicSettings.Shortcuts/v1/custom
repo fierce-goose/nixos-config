@@ -1,5 +1,46 @@
 {
     (
+        modifiers: [
+            Super,
+        ],
+    ): Disable,
+    (
+        modifiers: [],
+        key: "XF86KbdBrightnessUp",
+        description: Some("inc kbd brightness"),
+    ): Spawn("brightnessctl --device=rgb:kbd_backlight set 20%+"),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "n",
+        description: Some("obsidian"),
+    ): Spawn("obsidian"),
+    (
+        modifiers: [
+            Super,
+            Ctrl,
+            Shift,
+        ],
+        key: "r",
+        description: Some("reboot"),
+    ): Spawn("reboot"),
+    (
+        modifiers: [
+            Alt,
+            Shift,
+        ],
+        key: "Tab",
+    ): Disable,
+    (
+        modifiers: [
+            Super,
+            Alt,
+        ],
+        key: "b",
+        description: Some("private window firefox"),
+    ): Spawn("firefox --private-window"),
+    (
         modifiers: [],
         key: "XF86KbdLightOnOff",
         description: Some("open tailor gui"),
@@ -18,18 +59,10 @@
     (
         modifiers: [
             Super,
-        ],
-    ): Disable,
-    (
-        modifiers: [
-            Super,
-            Ctrl,
-            Alt,
             Shift,
         ],
-        key: "b",
-        description: Some("tor"),
-    ): Spawn("tor-browser"),
+        key: "m",
+    ): Minimize,
     (
         modifiers: [
             Super,
@@ -43,11 +76,18 @@
         modifiers: [
             Super,
             Ctrl,
+            Alt,
             Shift,
         ],
-        key: "r",
-        description: Some("reboot"),
-    ): Spawn("reboot"),
+        key: "b",
+        description: Some("tor"),
+    ): Spawn("tor-browser"),
+    (
+        modifiers: [
+            Alt,
+        ],
+        key: "Tab",
+    ): Disable,
     (
         modifiers: [
             Super,
@@ -55,33 +95,6 @@
         key: "Return",
         description: Some("kitty"),
     ): Spawn("kitty"),
-    (
-        modifiers: [
-            Super,
-            Alt,
-        ],
-        key: "b",
-        description: Some("private window firefox"),
-    ): Spawn("firefox --private-window"),
-    (
-        modifiers: [
-            Super,
-        ],
-        key: "n",
-        description: Some("obsidian"),
-    ): Spawn("obsidian"),
-    (
-        modifiers: [
-            Super,
-            Shift,
-        ],
-        key: "m",
-    ): Minimize,
-    (
-        modifiers: [],
-        key: "XF86KbdBrightnessUp",
-        description: Some("inc kbd brightness"),
-    ): Spawn("brightnessctl --device=rgb:kbd_backlight set 20%+"),
     (
         modifiers: [
             Super,
