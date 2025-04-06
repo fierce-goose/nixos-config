@@ -1,5 +1,4 @@
 Some([
-    "com.system76.CosmicAppList",
-    "com.system76.CosmicPanelAppButton",
-    "com.system76.CosmicAppletMinimize",
+    "dev.dominiccgeh.CosmicAppletEmojiSelector",
+    "io.github.wiiznokes.cosmic-ext-applet-clipboard-manager",
 ])

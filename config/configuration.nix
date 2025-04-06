@@ -10,29 +10,19 @@
       ./nvidia.nix
       ./nvim.nix
       ./cosmic.nix
+      ./pipewire.nix
     ];
 
   # Generation label
   system.nixos.label = "";
 
   # Bootloader
-  time.hardwareClockInLocalTime = true;
-  boot = {
-    loader = {
-      grub = {
-        enable = true;
-        devices = [ "nodev" ];
-        useOSProber = true;
-        efiSupport = true;
-      };
-      efi = {
-        canTouchEfiVariables = true;
-      };
-      systemd-boot.enable = false;
-    };
-    kernelPackages = pkgs.linuxPackages-rt_latest;
-    supportedFilesystems = [ "ntfs" ];
+  boot.loader = {
+    systemd-boot.enable = true;
+    grub.enable = false;
+    efi.canTouchEfiVariables = true;
   };
+  boot.kernelPackages = pkgs.linuxPackages-rt_latest;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -129,6 +119,8 @@
     foliate
     viber
     gparted
+    bottles
+    reaper
 
     #games
     hmcl

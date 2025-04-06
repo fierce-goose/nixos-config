@@ -1,30 +1,43 @@
 {
     (
         modifiers: [
-            Super,
+            Alt,
         ],
+        key: "Tab",
     ): Disable,
     (
         modifiers: [],
-        key: "XF86KbdBrightnessUp",
-        description: Some("inc kbd brightness"),
-    ): Spawn("brightnessctl --device=rgb:kbd_backlight set 20%+"),
+        key: "XF86KbdLightOnOff",
+        description: Some("open tailor gui"),
+    ): Spawn("tailor_gui"),
     (
         modifiers: [
             Super,
+            Ctrl,
+            Alt,
+            Shift,
         ],
-        key: "n",
-        description: Some("obsidian"),
-    ): Spawn("obsidian"),
+        key: "b",
+        description: Some("tor"),
+    ): Spawn("tor-browser"),
+    (
+        modifiers: [
+            Super,
+            Ctrl,
+            Alt,
+            Shift,
+        ],
+        key: "t",
+    ): Spawn("ayugram-desktop"),
     (
         modifiers: [
             Super,
             Ctrl,
             Shift,
         ],
-        key: "r",
-        description: Some("reboot"),
-    ): Spawn("reboot"),
+        key: "p",
+        description: Some("poweroff"),
+    ): Spawn("poweroff"),
     (
         modifiers: [
             Alt,
@@ -41,10 +54,33 @@
         description: Some("private window firefox"),
     ): Spawn("firefox --private-window"),
     (
-        modifiers: [],
-        key: "XF86KbdLightOnOff",
-        description: Some("open tailor gui"),
-    ): Spawn("tailor_gui"),
+        modifiers: [
+            Super,
+        ],
+        key: "n",
+        description: Some("obsidian"),
+    ): Spawn("obsidian"),
+    (
+        modifiers: [
+            Super,
+            Shift,
+        ],
+        key: "m",
+    ): Minimize,
+    (
+        modifiers: [
+            Super,
+            Ctrl,
+            Shift,
+        ],
+        key: "r",
+        description: Some("reboot"),
+    ): Spawn("reboot"),
+    (
+        modifiers: [
+            Super,
+        ],
+    ): Disable,
     (
         modifiers: [
             Super,
@@ -57,51 +93,14 @@
         description: Some("dec kbd brightness"),
     ): Spawn("brightnessctl --device=rgb:kbd_backlight set 20%-"),
     (
-        modifiers: [
-            Super,
-            Shift,
-        ],
-        key: "m",
-    ): Minimize,
-    (
-        modifiers: [
-            Super,
-            Ctrl,
-            Alt,
-            Shift,
-        ],
-        key: "t",
-    ): Spawn("ayugram-desktop"),
-    (
-        modifiers: [
-            Super,
-            Ctrl,
-            Alt,
-            Shift,
-        ],
-        key: "b",
-        description: Some("tor"),
-    ): Spawn("tor-browser"),
-    (
-        modifiers: [
-            Alt,
-        ],
-        key: "Tab",
-    ): Disable,
+        modifiers: [],
+        key: "XF86KbdBrightnessUp",
+        description: Some("inc kbd brightness"),
+    ): Spawn("brightnessctl --device=rgb:kbd_backlight set 20%+"),
     (
         modifiers: [
             Super,
         ],
         key: "Return",
-        description: Some("kitty"),
-    ): Spawn("kitty"),
-    (
-        modifiers: [
-            Super,
-            Ctrl,
-            Shift,
-        ],
-        key: "p",
-        description: Some("poweroff"),
-    ): Spawn("poweroff"),
+    ): System(Terminal),
 }

@@ -9,5 +9,6 @@
     cosmic-ext-applet-clipboard-manager
     cosmic-ext-applet-emoji-selector
     cosmic-ext-calculator
+    cosmic-ext-tweaks
   ];
 }
